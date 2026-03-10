@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دعوة زفاف - أحمد & ندي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --olive-dark: #5e6b4a;
+            --olive: #74845f;
+            --olive-soft: #94a07f;
+            --olive-pale: #c6cfbb;
+            --paper: #f8f6f1;
+            --paper-2: #f1eee7;
+            --paper-3: #ebe7de;
+            --ink: #2e3128;
+            --ink-soft: #5b6152;
+            --ink-faint: #8a9081;
+            --line: rgba(116, 132, 95, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: #e7e2d8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            color: var(--ink);
+        }
+
+        .scene {
+            perspective: 1200px;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+            animation: settleIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes settleIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .envelope-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72%;
+            height: 18px;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.14) 0%, transparent 72%);
+            border-radius: 50%;
+        }
+
+        .envelope {
+            background: var(--olive-pale);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-left: 260px solid transparent;
+            border-right: 260px solid transparent;
+            border-top: 180px solid #879474;
+            z-index: 2;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            border-left: 260px solid transparent;
+            border-right: 260px solid transparent;
+            border-bottom: 160px solid #aab59a;
+            z-index: 1;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom-right, transparent 49.7%, rgba(0, 0, 0, 0.045) 49.7%, rgba(0, 0, 0, 0.045) 50.3%, transparent 50.3%),
+            linear-gradient(to bottom-left, transparent 49.7%, rgba(0, 0, 0, 0.045) 49.7%, rgba(0, 0, 0, 0.045) 50.3%, transparent 50.3%);
+            pointer-events: none;
+        }
+
+        .envelope-body {
+            position: relative;
+            z-index: 3;
+            padding: 80px 44px 56px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 520px;
+        }
+
+        .seal {
+            position: absolute;
+            top: 49%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 82px;
+            height: 82px;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .seal:hover {
+            transform: translate(-50%, -50%) scale(1.03);
+        }
+
+        .seal-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.16));
+        }
+
+        .card-wrapper {
+            width: 100%;
+            margin-top: 20px;
+            display: none;
+            animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .card-wrapper.open {
+            display: block;
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.985);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card {
+            background: var(--paper);
+            border: 1px solid rgba(116, 132, 95, 0.16);
+            border-radius: 14px;
+            padding: 42px 32px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .top-ornament {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 22px;
+            color: var(--olive);
+        }
+
+        .top-ornament .line {
+            width: 54px;
+            height: 1px;
+            background: rgba(116, 132, 95, 0.35);
+        }
+
+        .top-ornament .diamond {
+            width: 7px;
+            height: 7px;
+            background: var(--olive);
+            transform: rotate(45deg);
+            border-radius: 1px;
+        }
+
+        .wedding-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--olive);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: var(--ink-soft);
+            font-weight: 500;
+            margin-bottom: 26px;
+            line-height: 1.9;
+        }
+
+        .photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 14px;
+            border: 1px solid rgb(116 132 95 / 11%);
+            display: block;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .monogram {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #eff1ea;
+            border: 2px solid rgba(116, 132, 95, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .monogram-text {
+            font-size: 40px;
+            color: var(--olive-dark);
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .names {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .names-en {
+            font-size: 14px;
+            color: var(--olive);
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .mid-ornament {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin: 18px 0 22px;
+            color: var(--olive);
+        }
+
+        .mid-ornament .line {
+            width: 64px;
+            height: 1px;
+            background: rgba(116, 132, 95, 0.3);
+        }
+
+        .mid-ornament svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--olive);
+            opacity: 0.8;
+        }
+
+        .date-section {
+            margin: 0 0 22px;
+        }
+
+        .date-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--olive);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .date-main {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .date-sub {
+            font-size: 15px;
+            color: var(--ink-soft);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .date-venue {
+            font-size: 13px;
+            color: var(--ink-faint);
+            letter-spacing: 0.3px;
+        }
+
+        .countdown-section {
+            background: #f2f4ee;
+            border: 1px solid rgba(116, 132, 95, 0.14);
+            border-radius: 12px;
+            padding: 18px 14px;
+            margin: 24px 0;
+        }
+
+        .countdown-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--olive);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-box {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(116, 132, 95, 0.10);
+            border-radius: 10px;
+            padding: 12px 8px;
+        }
+
+        .time-number {
+            display: block;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .time-label {
+            font-size: 11px;
+            color: var(--ink-faint);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .countdown-ended {
+            font-size: 18px;
+            color: var(--olive-dark);
+            padding: 8px 0;
+            font-weight: 700;
+        }
+
+        .message {
+            font-size: 14px;
+            line-height: 2;
+            color: var(--ink-soft);
+            margin: 20px 0 26px;
+            font-weight: 500;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            background: var(--olive-dark);
+            color: #fff;
+            border: 1px solid var(--olive-dark);
+            padding: 12px 26px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: var(--olive);
+            border-color: var(--olive);
+            transform: translateY(-1px);
+        }
+
+        .card-footer {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--olive);
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        .open-hint {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: var(--ink-faint);
+            animation: pulse 2s ease-in-out infinite;
+            font-weight: 500;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.45;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .envelope-flap {
+                border-left-width: 200px;
+                border-right-width: 200px;
+                border-top-width: 140px;
+            }
+
+            .envelope::before {
+                border-left-width: 200px;
+                border-right-width: 200px;
+                border-bottom-width: 130px;
+            }
+
+            .envelope-body {
+                padding: 70px 26px 48px;
+                min-height: 420px;
+            }
+
+            .card {
+                padding: 34px 22px;
+            }
+
+            .names {
+                font-size: 26px;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .time-number {
+                font-size: 22px;
+            }
+
+            .photo-wrap {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scene">
+    <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+
+            <div class="seal" id="sealBtn" title="افتح الدعوة">
+                <svg class="seal-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="waxGrad" cx="40%" cy="35%">
+                            <stop offset="0%" stop-color="#879474" />
+                            <stop offset="55%" stop-color="#6f7f5b" />
+                            <stop offset="100%" stop-color="#4f5a40" />
+                        </radialGradient>
+                    </defs>
+                    <path
+                        d="M50,8 C62,6 76,14 82,24 C90,32 92,46 88,58 C84,70 74,80 62,86 C50,92 36,90 26,82 C16,74 10,60 12,46 C14,32 22,18 34,12 C40,9 45,8.5 50,8 Z"
+                        fill="url(#waxGrad)" />
+                    <circle cx="50" cy="50" r="25" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="1.4" />
+                    <text x="50" y="58" text-anchor="middle" font-size="24" fill="rgba(255,255,255,0.82)"
+                          font-weight="700">A
+                    </text>
+                </svg>
+            </div>
+
+            <div class="envelope-body">
+                <div class="card-wrapper" id="cardWrapper">
+                    <div class="card">
+
+                        <div class="top-ornament">
+                            <div class="line"></div>
+                            <div class="diamond"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="wedding-label">دعوة زفاف</div>
+                        <div class="tagline">نتشرف بدعوتكم لمشاركتنا<br>أجمل يوم في حياتنا</div>
+
+                        <div class="photo-wrap">
+                            <img src="ahmed.jpeg" alt="أحمد & ندي"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+                            <div class="monogram" style="display:none">
+                                <span class="monogram-text">A&amp;N</span>
+                            </div>
+                        </div>
+
+                        <div class="names">أحمد & ندي</div>
+                        <div class="names-en">Ahmed &amp; Nada</div>
+
+                        <div class="mid-ornament">
+                            <div class="line"></div>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" />
+                            </svg>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="date-section">
+                            <div class="date-label">— يوم الفرح —</div>
+                            <div class="date-main">الإثنين، ٢٣ مارس ٢٠٢٦</div>
+                            <div class="date-sub">الساعة ٨:٠٠ مساءً</div>
+                            <div class="date-venue">قاعة قصر حبو — أتميدة</div>
+                        </div>
+
+                        <div class="countdown-section">
+                            <div class="countdown-label">العد التنازلي</div>
+                            <div class="countdown" id="countdown">
+                                <div class="time-box">
+                                    <span class="time-number" id="days">00</span>
+                                    <span class="time-label">يوم</span>
+                                </div>
+                                <div class="time-box">
+                                    <span class="time-number" id="hours">00</span>
+                                    <span class="time-label">ساعة</span>
+                                </div>
+                                <div class="time-box">
+                                    <span class="time-number" id="minutes">00</span>
+                                    <span class="time-label">دقيقة</span>
+                                </div>
+                                <div class="time-box">
+                                    <span class="time-number" id="seconds">00</span>
+                                    <span class="time-label">ثانية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="message">
+                            حضوركم يملأ فرحتنا ويزيد يومنا بهجة،<br>
+                            نتمنى تشريفكم ومشاركتنا هذه اللحظة الجميلة.
+                        </p>
+
+                        <a class="btn" href="https://maps.app.goo.gl/Yw1zaFghdTWfTW559" target="_blank">
+                            <span>📍 عرض اللوكيشن</span>
+                        </a>
+
+                        <div class="card-footer">بانتظاركم بكل حب 🤍</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="open-hint" id="openHint">✦ اضغط على الختم لفتح الدعوة ✦</p>
+    </div>
+</div>
+
+<!-- الموسيقى -->
+<audio id="bgMusic" preload="auto">
+    <source src="music.mpeg" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
+<script>
+    const seal = document.getElementById('sealBtn');
+    const cardWrapper = document.getElementById('cardWrapper');
+    const hint = document.getElementById('openHint');
+    const bgMusic = document.getElementById('bgMusic');
+    let opened = false;
+
+    seal.addEventListener('click', () => {
+        if (!opened) {
+            opened = true;
+
+            // تشغيل الموسيقى مع أول ضغطة
+            bgMusic.play().catch((error) => {
+                console.log('تعذر تشغيل الموسيقى تلقائيًا:', error);
+            });
+
+            seal.style.transform = 'translate(-50%, -50%) scale(0)';
+            seal.style.opacity = '0';
+            seal.style.transition = 'all 0.35s ease';
+            hint.style.display = 'none';
+
+            setTimeout(() => {
+                cardWrapper.classList.add('open');
+                seal.style.display = 'none';
+            }, 300);
+        }
+    });
+
+    const weddingDate = new Date('2026-03-23T20:00:00');
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = weddingDate - now;
+
+        if (diff <= 0) {
+            document.getElementById('countdown').innerHTML =
+                '<div class="countdown-ended" style="grid-column:1/-1">اليوم هو يوم الفرح 🎉🤍</div>';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
